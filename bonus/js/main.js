@@ -7,6 +7,50 @@
 // corrispondenti cd.
 
 // function to return Data(values) from Api Objects----------
+function selectGenre(){
+  console.log("genre");
+  $.ajax({
+    url : 'https://flynn.boolean.careers/exercises/api/array/music',
+    method : "GET",
+    success : function(data,state){
+
+      var array = data['response'];
+      var arrayLength = array.length;
+      var success = data ['success'];
+
+      if(success){
+        var template = $('#search_template').html();
+        var compiled = Handlebars.compile(template);
+        var target= $('.container #select');
+
+        for (var i = 0; i < arrayLength; i++) {
+
+          var genre_type = array[i]['genre'];
+
+            var selectHTML = compiled({'genre' : genre_type});
+
+            target.append(selectHTML);
+
+
+
+        }//end of for cycle
+      } //end of if(success)
+    },
+
+    error : function(err){
+      console.log("error", err);
+      } // end of error-function
+
+  }); // end of ajax function
+
+}
+
+
+
+
+
+
+
 function getApiData(){
 
   $.ajax({
@@ -72,6 +116,7 @@ function cycleThroughAlbum(arrayLength,array){
 function init(){
   console.log("init");
   getApiData();
+  selectGenre();
 }
 
 $(document).ready(init);

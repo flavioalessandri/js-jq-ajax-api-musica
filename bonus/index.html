@@ -17,7 +17,10 @@
             <span class="year">{{year}}</span>
 
           </div>
+        </script>
 
+        <script id="search_template" type="text/x-handlebars-javascript">
+          <option value="{{genre}}" selected>{{genre}}</option>
         </script>
 
 
@@ -32,10 +35,10 @@
                 <div id="selection">
                   <label for="select">Seleziona il tuo genere Musicale</label>
                   <select id="select" name="select">
-                    <option value="Rock" selected>Rock</option>
-                    <option value="Pop">Pop</option>
+                    <option value="all" selected>Tutti i generi</option>
+                    <!-- <option value="Pop">Pop</option>
                     <option value="Jazz">Jazz</option>
-                    <option value="Metal">Metal</option>
+                    <option value="Metal">Metal</option> -->
                   </select>
 
                 </div>
