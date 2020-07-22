@@ -1,82 +1,3 @@
-// Attraverso una chiamata ajax all'Api di boolean avremo a
-// disposizione una decina di dischi musicali.
-// Servendoci di handlebars stampiamo tutto a schermo.
-
-// Bonus: Creare una select con i seguenti generi: pop, rock,
-// metal e jazz. In base a cosa scegliamo nella select vedremo i
-// corrispondenti cd.
-
-
-
-function sortAlbumByGenre(){
-  $(document).on("change",'#select', function(){
-    var input = $('#select').val();
-
-    var stringa = "all";
-    console.log("inpuit", input, "stringa", stringa);
-
-    $('.album-container').addClass('hidden');
-    $('.album-container').removeClass('active');
-
-    $('.album-container').each(function(){
-
-      if(input === $(this).attr('data-genere')){
-
-      $(this).removeClass('hidden');
-      $(this).addClass('active');
-
-
-    }else if(input === stringa ) {
-      $('.album-container').addClass('active');
-      $('.album-container').removeClass('hidden');
-      }
-
-    })
-
-  });
-}
-
-
-function selectGenre(){
-  console.log("genre");
-  $.ajax({
-    url : 'https://flynn.boolean.careers/exercises/api/array/music',
-    method : "GET",
-    success : function(data,state){
-
-      var array = data['response'];
-      var arrayLength = array.length;
-      var success = data ['success'];
-
-      if(success){
-        var template = $('#search_template').html();
-        var compiled = Handlebars.compile(template);
-        var target= $('.container #select');
-        var lista = [];
-
-        for (var i = 0; i < arrayLength; i++) {
-          var genre_type = array[i]['genre'];
-          if(lista.indexOf(genre_type)=== -1){
-            lista.push(genre_type);
-            var selectHTML = compiled({'genre' : genre_type});
-            target.append(selectHTML);
-
-          } else{
-            console.log("esiste gia");
-        }
-          console.log("ecco i generi", genre_type);
-        }//end of for cycle
-      } //end of if(success)
-    },
-
-    error : function(err){
-      console.log("error", err);
-      } // end of error-function
-
-  }); // end of ajax function
-}
-
-
 function getApiData(){
 
   $.ajax({
@@ -93,7 +14,8 @@ function getApiData(){
 
       if(success){
         cycleThroughAlbum(arrayLength,array);
-        sortAlbumByGenre();
+        selectMusicGenre(arrayLength,array);
+        sortAlbumByGenre();  // function to sort album using select tag
 
       } //end of if(success)
     },
@@ -105,6 +27,53 @@ function getApiData(){
   }); // end of ajax function
 }
 
+// function to sort album using <select> tag-----------------------------
+function sortAlbumByGenre(){
+  $(document).on("change",'#select', function(){
+    var input = $('#select').val();
+
+    var stringa = "all_genre";
+
+    $('.album-container').addClass('hidden');
+    $('.album-container').removeClass('active');
+
+    $('.album-container').each(function(){
+
+      if(input === $(this).attr('data-genere')){
+
+      $(this).removeClass('hidden');
+      $(this).addClass('active');
+
+
+    }else if(input === stringa ) {
+      $('.album-container').addClass('active');
+      $('.album-container').removeClass('hidden');
+      }
+    })  //end of each() function
+  }); //end of on."change" function
+}
+
+// function to get genre value from API and append them into <option> tag-----------------------------
+function selectMusicGenre(arrayLength,array){
+
+  var src_template = $('#search_template').html();
+  var src_compiled = Handlebars.compile(src_template);
+  var src_target= $('.container #select');
+  var lista = [];
+
+  for (var i = 0; i < arrayLength; i++) {
+
+    var genre_type = array[i]['genre'];
+    if(lista.indexOf(genre_type)=== -1){
+      lista.push(genre_type);
+      var selectHTML = src_compiled({'genre' : genre_type});
+      src_target.append(selectHTML);
+
+    } else{
+      console.log("esiste gia");
+    }
+  }//end of for cycle
+}
 
 // function to cycle into the Album list to get usefull values----------
 function cycleThroughAlbum(arrayLength,array){
@@ -137,18 +106,13 @@ function cycleThroughAlbum(arrayLength,array){
 
     target.append(objectHTML);
 
-
-
   }//end of for cycle
 }
 
  // My Functions Container------------------------------
 
 function init(){
-  console.log("init");
   getApiData();
-  selectGenre();
-  // sortAlbumByGenre();
 }
 
 $(document).ready(init);
