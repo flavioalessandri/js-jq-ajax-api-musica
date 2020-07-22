@@ -9,13 +9,14 @@
         <link rel="stylesheet" href="css/style.css">
         <script id="album_template" type="text/x-handlebars-javascript">
 
-          <div class="cd" data-genere = "{{genre}}">
+          <div class="album-container" data-genere = "{{genre}}">
+              <div class="cd active" data-genere = "{{genre}}">
 
-            <img src=" {{poster}} " alt="{{title}}">
-            <h3>{{title}}</h3>
-            <span class="author">{{author}}</span>
-            <span class="year">{{year}}</span>
-
+                <img src=" {{poster}} " alt="{{title}}">
+                <h3>{{title}}</h3>
+                <span class="author">{{author}}</span>
+                <span class="year">{{year}}</span>
+            </div>
           </div>
         </script>
 
@@ -50,12 +51,7 @@
 
         <div class="cds-container container">
             <!-- Disco ad esempio -->
-            <div class="cd">
-                <img src="https://upload.wikimedia.org/wikipedia/en/9/9f/Ten_Summoner%27s_Tales.jpg" alt="">
-                <h3>Ten's Summoners Tales</h3>
-                <span class="author">Sting</span>
-                <span class="year">1993</span>
-            </div>
+
         </div>
 
 

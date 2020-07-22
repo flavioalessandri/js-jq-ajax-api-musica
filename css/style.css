@@ -41,6 +41,13 @@ header img {
     padding: 100px 0;
 }
 
+.album-container{
+    width:300px;
+    height: 360px;
+    background: rgb(46, 58, 70);
+    text-align: center;
+}
+
 .cd {
     display: flex;
     justify-content: flex-start;
@@ -72,4 +79,12 @@ header img {
 
 .cd span.year {
     color: grey;
+}
+
+.active{
+  display: block;
+}
+
+.hidden{
+  display:hidden;
 }

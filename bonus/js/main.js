@@ -7,6 +7,21 @@
 // corrispondenti cd.
 
 // function to return Data(values) from Api Objects----------
+
+// ---non funziona------
+function sortAlbumByGenre(){
+  $(document).on("change",'#select', function(){
+    // $('.album-container').addClass('hidden');
+    $('div[class="album-container"]').addClass('hidden');
+    var input = $('#select').val();
+    var target = $('div[class="album-container"][data-genere ="'+ input +'"]');
+    target.removeClass('hidden');
+    target.addClass('active');
+  });
+
+}
+
+
 function selectGenre(){
   console.log("genre");
   $.ajax({
@@ -34,23 +49,7 @@ function selectGenre(){
           } else{
             console.log("esiste gia");
         }
-
           console.log("ecco i generi", genre_type);
-
-
-
-          // if(genre_type.indexOf(i) !== -1){
-          //   console.log("indexof",genre_type.indexOf(i));
-          //   var selectHTML = compiled({'genre' : genre_type});
-          //
-          //   target.append(selectHTML);
-          // } else{
-          //   console.log("esiste gia");
-          //
-          // }
-
-
-
         }//end of for cycle
       } //end of if(success)
     },
@@ -60,7 +59,6 @@ function selectGenre(){
       } // end of error-function
 
   }); // end of ajax function
-
 }
 
 
@@ -80,6 +78,8 @@ function getApiData(){
 
       if(success){
         cycleThroughAlbum(arrayLength,array);
+        sortAlbumByGenre();
+
       } //end of if(success)
     },
 
@@ -89,6 +89,7 @@ function getApiData(){
 
   }); // end of ajax function
 }
+
 
 // function to cycle into the Album list to get usefull values----------
 function cycleThroughAlbum(arrayLength,array){
@@ -121,6 +122,8 @@ function cycleThroughAlbum(arrayLength,array){
 
     target.append(objectHTML);
 
+
+
   }//end of for cycle
 }
 
@@ -130,6 +133,7 @@ function init(){
   console.log("init");
   getApiData();
   selectGenre();
+  // sortAlbumByGenre();
 }
 
 $(document).ready(init);
