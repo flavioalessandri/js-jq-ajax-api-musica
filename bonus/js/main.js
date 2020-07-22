@@ -22,14 +22,32 @@ function selectGenre(){
         var template = $('#search_template').html();
         var compiled = Handlebars.compile(template);
         var target= $('.container #select');
+        var lista = [];
 
         for (var i = 0; i < arrayLength; i++) {
-
           var genre_type = array[i]['genre'];
-
+          if(lista.indexOf(genre_type)=== -1){
+            lista.push(genre_type);
             var selectHTML = compiled({'genre' : genre_type});
-
             target.append(selectHTML);
+
+          } else{
+            console.log("esiste gia");
+        }
+
+          console.log("ecco i generi", genre_type);
+
+
+
+          // if(genre_type.indexOf(i) !== -1){
+          //   console.log("indexof",genre_type.indexOf(i));
+          //   var selectHTML = compiled({'genre' : genre_type});
+          //
+          //   target.append(selectHTML);
+          // } else{
+          //   console.log("esiste gia");
+          //
+          // }
 
 
 
@@ -44,11 +62,6 @@ function selectGenre(){
   }); // end of ajax function
 
 }
-
-
-
-
-
 
 
 function getApiData(){
