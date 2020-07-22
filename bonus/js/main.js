@@ -6,19 +6,34 @@
 // metal e jazz. In base a cosa scegliamo nella select vedremo i
 // corrispondenti cd.
 
-// function to return Data(values) from Api Objects----------
 
-// ---non funziona------
+
 function sortAlbumByGenre(){
   $(document).on("change",'#select', function(){
-    // $('.album-container').addClass('hidden');
-    $('div[class="album-container"]').addClass('hidden');
     var input = $('#select').val();
-    var target = $('div[class="album-container"][data-genere ="'+ input +'"]');
-    target.removeClass('hidden');
-    target.addClass('active');
-  });
 
+    var stringa = "all";
+    console.log("inpuit", input, "stringa", stringa);
+
+    $('.album-container').addClass('hidden');
+    $('.album-container').removeClass('active');
+
+    $('.album-container').each(function(){
+
+      if(input === $(this).attr('data-genere')){
+
+      $(this).removeClass('hidden');
+      $(this).addClass('active');
+
+
+    }else if(input === stringa ) {
+      $('.album-container').addClass('active');
+      $('.album-container').removeClass('hidden');
+      }
+
+    })
+
+  });
 }
 
 
