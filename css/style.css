@@ -11,9 +11,16 @@ body {
 }
 
 .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 1070px;
     height: 100%;
     margin: 0 auto;
+}
+
+label{
+  color: white;
 }
 
 header {
