@@ -86,25 +86,11 @@ function cycleThroughAlbum(arrayLength,array){
 
   for (var i = 0; i < arrayLength; i++) {
 
-    var author_name = array[i]['author'];
-    var genre_type = array[i]['genre'];
-    var img_cover_album = array[i]['poster'];
-    var title_album = array[i]['title'];
-    var date_album = array[i]['year'];
+    var cd = array[i];
 
-    var objectHTML = compiled(
-      {
-        //key value to be compiled
-        'author' : author_name,
-        'genre'  : genre_type,
-        'poster' : img_cover_album,
-        'title'  : title_album,
-        'year'   : date_album
-        //key value to be compiled
-      }
-    );  // compiled objectHTML finish
+    var cdHTML = compiled(array[i]);
 
-    target.append(objectHTML);
+    target.append(cdHTML);
 
   }//end of for cycle
 }
