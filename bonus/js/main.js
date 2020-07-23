@@ -80,7 +80,7 @@ function cycleThroughAlbum(arrayLength,array){
 
   var template = $('#album_template').html();
   var compiled = Handlebars.compile(template);
-  var target= $('.cds-container.container');
+  var target= $('.cds-container');
 
   // ciclo gli oggetti della lista prendendone i valori dalle chiavi rispettive
 

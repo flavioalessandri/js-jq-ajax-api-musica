@@ -6,7 +6,7 @@
 }
 
 body {
-    background: #1E2D3B;
+    background: #15795B;
     min-height: 100vh;
 }
 
@@ -24,13 +24,24 @@ label{
 }
 
 header {
+    position: fixed;
+    top:0;
     width: 100%;
     height: 70px;
-    background: rgb(46, 58, 70);
+    background: #88D498;
+    z-index: 2;
 }
 header img {
     height: 50px;
     margin-top: 10px;
+}
+
+.album-container{
+  width: 20%;
+  background: #88D498;
+  text-align: center;
+  margin: 10px;
+  filter: drop-shadow(1px 1px 8px #0C4534);
 }
 
 .cds-container {
@@ -41,44 +52,47 @@ header img {
     padding: 100px 0;
 }
 
-.album-container{
-  max-width: 20%;
-  background: rgb(46, 58, 70);
-  text-align: center;
-  margin: 10px;
-}
+
 
 .cd {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    flex-basis: 200px;
-    padding: 20px;
-    margin: 10px 20px;
-    height: 360px;
-    background: rgb(46, 58, 70);
-    text-align: center;
+  position: relative;
+  height: 360px;
+  background: #88D498;
+  text-align: center;
+  border-radius: 2px;
 }
 
 .cd img {
-    max-width: 100%;
+  width: 100%;
+  max-height: 240px;
+}
+
+.cd .info {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width:90%;
 }
 
 .cd h3 {
-    margin: 20px 0;
+    margin: 0 0 10px 0;
     color: white;
-    font-size: 22px;
+    font-size: 17px;
     text-transform: uppercase;
 }
 
-.cd span.author {
-    color: grey;
-    font-size: 20px;
+.cd h4.author {
+
+    color: #1A936F;
+    font-size: 16px;
+    padding-bottom: 10px;
 }
 
-.cd span.year {
-    color: grey;
+.cd h4.year {
+
+    color: #1A936F;
 }
 
 
